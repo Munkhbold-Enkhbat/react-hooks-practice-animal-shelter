@@ -1,6 +1,6 @@
 import React from "react";
 
-function Filters({ onChangeType }) {
+function Filters({ onChangeType, onFindPetsClick }) {
   return (
     <div className="ui form">
       <h3>Animal type</h3>
@@ -14,7 +14,7 @@ function Filters({ onChangeType }) {
       </div>
 
       <div className="field">
-        <button className="ui secondary button">Find pets</button>
+        <button className="ui secondary button" onClick={onFindPetsClick}>Find pets</button>
       </div>
     </div>
   );

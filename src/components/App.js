@@ -1,21 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Filters from "./Filters";
 import PetBrowser from "./PetBrowser";
 
 function App() {
   const [pets, setPets] = useState([]);
-  const [filters, setFilters] = useState({ type: "all" });
+  const [filters, setFilters] = useState({ type: "all" });  
 
-  useEffect(() => {
-    fetch('http://localhost:3001/pets')
-      .then(res => res.json())
-      .then(data => setPets(data))
-  }, [])
+  console.log(filters.type)
+  
+  const onFindPetsClick = () => {
+    
+    switch(filters.type) {      
+      case 'all':
+        fetch('http://localhost:3001/pets')
+        .then(res => res.json())
+        .then(data => setPets(data))
+        break;
+      case 'cat':
+        fetch('http://localhost:3001/pets?type=cat')
+        .then(res => res.json())
+        .then(data => setPets(data))
+        break;
+      case 'dog':
+        fetch('http://localhost:3001/pets?type=dog')
+        .then(res => res.json())
+        .then(data => setPets(data))
+        break;
+      case 'micropig':
+        fetch('http://localhost:3001/pets?type=micropig')
+        .then(res => res.json())
+        .then(data => setPets(data))
+        break;
+      default:
+        console.log("Sorry, we have no that kind of pets!")
+    }
+  }
 
   const onChangeType = (e) => {
-    setFilters(e.target.value)
-  }  
+    setFilters({ type: e.target.value })
+  } 
   
   return (
     <div className="ui container">
@@ -25,10 +49,10 @@ function App() {
       <div className="ui container">
         <div className="ui grid">
           <div className="four wide column">
-            <Filters onChangeType={onChangeType}/>
+            <Filters onChangeType={onChangeType} onFindPetsClick={onFindPetsClick}/>
           </div>
           <div className="twelve wide column">
-            <PetBrowser pets={pets} setPets={setPets} filters={filters}/>
+            <PetBrowser pets={pets}/>
           </div>
         </div>
       </div>
