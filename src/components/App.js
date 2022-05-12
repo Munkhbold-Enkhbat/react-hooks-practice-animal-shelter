@@ -15,7 +15,7 @@ function App() {
 
   const onChangeType = (e) => {
     setFilters(e.target.value)
-  }
+  }  
   
   return (
     <div className="ui container">
@@ -28,7 +28,7 @@ function App() {
             <Filters onChangeType={onChangeType}/>
           </div>
           <div className="twelve wide column">
-            <PetBrowser pets={pets} setPets={setPets}/>
+            <PetBrowser pets={pets} setPets={setPets} filters={filters}/>
           </div>
         </div>
       </div>
