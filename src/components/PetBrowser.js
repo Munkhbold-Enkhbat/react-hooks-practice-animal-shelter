@@ -2,8 +2,24 @@ import React from "react";
 
 import Pet from "./Pet";
 
-function PetBrowser() {
-  return <div className="ui cards">PET COMPONENT SHOULD GO HERE</div>;
+function PetBrowser({ pets, setPets, filters}) {
+
+  const renderAllPets = () => {
+    const filteredPets = pets.filter(pet => {
+      if(filters === 'All') {
+        return true
+      } else {
+        return pet.type === filters
+      }      
+    })
+    return filteredPets.map(pet => {
+      return <Pet key={pet.id} pet={pet}/>
+    })
+  }
+
+  return <div className="ui cards">
+    {renderAllPets()}
+  </div>;
 }
 
 export default PetBrowser;

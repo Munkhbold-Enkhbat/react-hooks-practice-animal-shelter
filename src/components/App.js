@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Filters from "./Filters";
 import PetBrowser from "./PetBrowser";
@@ -7,6 +7,16 @@ function App() {
   const [pets, setPets] = useState([]);
   const [filters, setFilters] = useState({ type: "all" });
 
+  useEffect(() => {
+    fetch('http://localhost:3001/pets')
+      .then(res => res.json())
+      .then(data => setPets(data))
+  }, [])
+
+  const onChangeType = (e) => {
+    setFilters(e.target.value)
+  }
+  
   return (
     <div className="ui container">
       <header>
@@ -15,10 +25,10 @@ function App() {
       <div className="ui container">
         <div className="ui grid">
           <div className="four wide column">
-            <Filters />
+            <Filters onChangeType={onChangeType}/>
           </div>
           <div className="twelve wide column">
-            <PetBrowser />
+            <PetBrowser pets={pets} setPets={setPets}/>
           </div>
         </div>
       </div>
