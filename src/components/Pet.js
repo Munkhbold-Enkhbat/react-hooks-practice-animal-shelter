@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Pet({ pet, onAdoptPet }) {
   const { id, type, gender, age, weight, name, isAdopted } = pet
-  const [isPetAdopted, setIsPetAdopted] = useState(false)
 
   const handleClick = () => {
-    setIsPetAdopted(true)
     onAdoptPet(id)
   }
 
@@ -25,7 +23,7 @@ function Pet({ pet, onAdoptPet }) {
         </div>
       </div>
       <div className="extra content">
-        { isPetAdopted ? <button className="ui disabled button">Already adopted</button> :
+        { isAdopted ? <button className="ui disabled button">Already adopted</button> :
           <button className="ui primary button" onClick={handleClick}>Adopt pet</button>
         }     
       </div>
