@@ -5,7 +5,7 @@ import PetBrowser from "./PetBrowser";
 
 function App() {
   const [pets, setPets] = useState([]);
-  const [filters, setFilters] = useState({ type: "all" });   
+  const [filters, setFilters] = useState({ type: "all" }); 
   
   const onFindPetsClick = () => {    
     switch(filters.type) {      
@@ -48,6 +48,8 @@ function App() {
         isAdopted: true
       })
     })
+    const updatedPets = pets.map(pet => pet.id === id ? {...pet, isAdopted: true} : pet)
+    setPets(updatedPets)    
   }
   
   return (
