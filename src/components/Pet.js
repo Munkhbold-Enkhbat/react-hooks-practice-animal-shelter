@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Pet({ pet, onAdoptPet }) {
-  const { id, type, gender, age, weight, name } = pet
+  const { id, type, gender, age, weight, name, isAdopted } = pet
   const [isPetAdopted, setIsPetAdopted] = useState(false)
 
   const handleClick = () => {
@@ -13,7 +13,7 @@ function Pet({ pet, onAdoptPet }) {
     <div className="card" data-testid="pet">
       <div className="content">
         <span className="header">
-          {gender === "male" ? '♀ ' : '♂ ' }
+          {gender === "female" ? '♀' : '♂' }
           {name}
         </span>
         <div className="meta">
